@@ -23,6 +23,7 @@ class TicketResource extends Resource
 
     protected static ?string $navigationGroup = 'Monitoreo y Control';
 
+
     public static function form(Form $form): Form
     {
         return $form
@@ -52,26 +53,26 @@ class TicketResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('numero_ticket'),
-                Tables\Columns\TextColumn::make('descripcion_reporte'),
+                Tables\Columns\TextColumn::make('numero_ticket')->sortable(),
+                Tables\Columns\TextColumn::make('descripcion_reporte')->sortable(),
                 Tables\Columns\TextColumn::make('hora_inicio_ticket')
-                    ->dateTime(),
+                    ->dateTime()->sortable(),
                 Tables\Columns\TextColumn::make('hora_diagnostico_cor')
-                    ->dateTime(),
+                    ->dateTime()->sortable(),
                 Tables\Columns\TextColumn::make('hora_inicio_reparacion')
-                    ->dateTime(),
+                    ->dateTime()->sortable(),
                 Tables\Columns\TextColumn::make('hora_final_evento')
-                    ->dateTime(),
+                    ->dateTime()->sortable(),
                 Tables\Columns\TextColumn::make('hora_llegada_sitio')
-                    ->dateTime(),
+                    ->dateTime()->sortable(),
                 Tables\Columns\TextColumn::make('hora_restablecimiento_servicio')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('impacto_ticket'),
+                    ->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('impacto_ticket')->sortable(),
                 Tables\Columns\TextColumn::make('hora_contacto_tecnico')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('causa'),
-                Tables\Columns\TextColumn::make('accion_tomada'),
-                Tables\Columns\TextColumn::make('tramo'),
+                    ->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('causa')->sortable(),
+                Tables\Columns\TextColumn::make('accion_tomada')->sortable(),
+                Tables\Columns\TextColumn::make('tramo')->sortable(),
             ])
             ->filters([
                 //
@@ -81,7 +82,8 @@ class TicketResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('id', 'desc');
     }
     
     public static function getRelations(): array
